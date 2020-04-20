@@ -5,6 +5,7 @@ type "python adobe_connect_hack.py -h" in terminal to see options
 import sys
 import argparse
 import selenium
+from threading import Thread
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
