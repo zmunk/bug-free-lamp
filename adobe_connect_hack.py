@@ -110,10 +110,8 @@ def main():
     else:
         driver_loc = "chromedriver80.exe"
 
-    # username = input("Username: ")
-    # password = getpass()
-    username = "ibrahimtigrek@std.sehir.edu.tr"
-    password = "FJdksl,90"
+    username = input("Username: ")
+    password = getpass()
 
     browser = get_browser(driver_loc)
     main_window = get_main_window(browser, args.url, username, password)
