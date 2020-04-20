@@ -33,7 +33,7 @@ def get_browser(driver_loc):
     browser = webdriver.Chrome(driver_loc)
     return browser
 
-def hack(browser, url, in_app, username, password):
+def get_main_window(browser, url, username, password):
     ''' automatically open adobe connect class
     url: url of meeting page on lms
     in_app (boolean): open in app if true, otherwise open in browser
@@ -59,9 +59,13 @@ def hack(browser, url, in_app, username, password):
 
     browser.find_element_by_id("submitButton").click()
 
-    # MAIN PAGE REACHED
-
     main_window = browser.window_handles[0]
+    return main_window
+
+def open_windows(n, browser, main_window, username, password, in_app):
+    ''' by default: in browser '''
+    browser.switch_to.window(main_window)
+
     join_meeting_btn = browser.find_element_by_id('kati2')
     join_meeting_btn.click()
 
@@ -106,11 +110,16 @@ def main():
     else:
         driver_loc = "chromedriver80.exe"
 
-    username = input("Username: ")
-    password = getpass()
+    # username = input("Username: ")
+    # password = getpass()
+    username = "ibrahimtigrek@std.sehir.edu.tr"
+    password = "FJdksl,90"
 
     browser = get_browser(driver_loc)
-    hack(browser, args.url, args.app, username, password)
+    main_window = get_main_window(browser, args.url, username, password)
+
+    num_of_windows = 1
+    open_windows(num_of_windows, browser, main_window, username, password, args.app)
 
     
 
